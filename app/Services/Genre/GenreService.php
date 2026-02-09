@@ -17,6 +17,8 @@ class GenreService
     {
         $genres = $this->getGenres();
 
+        $imported = 0;
+
         if (empty($genres))
         {
             return 0;
@@ -24,14 +26,16 @@ class GenreService
 
         foreach ($genres as $genre)
         {
-            $this->genreRepository->updateOrCreate(tmdb_id: $genre['id'], name: $genre['name']);
+            $this->genreRepository->updateOrCreate(data: $genre);
+
+            $imported++;
         }
 
-        return count($genres);
+        return $imported;
     }
 
     private function getGenres(): array
     {
-        return $this->movieClientService->getMovieGenres();
+        return $this->movieClientService->fetchGenres();
     }
 }
