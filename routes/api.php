@@ -17,6 +17,10 @@ Route::prefix('v1')->group(function () {
         TestController::class, 'testMovieCasts'
     ])->name('test-movie-casts');
 
+    Route::get('test-movie-crews/{movie}', [
+        TestController::class, 'testMovieCrews'
+    ])->name('test-movie-crews');
+
 });
 
 

@@ -18,7 +18,7 @@ class MovieCastService
 
     public function syncMovieCasts(Movie $movie): int
     {
-        $casts = $this->getMovieCasts($movie->tmdb_id);
+        $casts = $this->getMovieCasts(movieId: $movie->tmdb_id);
 
         $ids = [];
 
@@ -45,6 +45,6 @@ class MovieCastService
 
     public function getMovieCasts(int $movieId): array
     {
-        return $this->movieClientService->fetchMovieCasts($movieId);
+        return $this->movieClientService->fetchMovieCredits(movieId: $movieId);
     }
 }

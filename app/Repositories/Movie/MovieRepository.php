@@ -37,4 +37,9 @@ class MovieRepository
     {
         $movie->actors()->syncWithoutDetaching($ids);
     }
+
+    public function attachCrews(Movie $movie, array $ids): void
+    {
+        $movie->crews()->syncWithoutDetaching($ids);
+    }
 }

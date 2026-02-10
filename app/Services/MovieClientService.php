@@ -10,7 +10,7 @@ class MovieClientService
     private const string MOVIES_ENDPOINT = '/3/discover/movie';
     private const string MOVIE_CASTS_ENDPOINT = '/3/movie/%d/credits';
 
-    public function fetchMovieCasts(int $movieId): array
+    public function fetchMovieCredits(int $movieId): array
     {
         return $this->fetch(endpoint: sprintf(self::MOVIE_CASTS_ENDPOINT, $movieId), params:
             [
