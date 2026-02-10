@@ -8,6 +8,7 @@ use App\Models\Movie\Movie;
 use App\Services\Genre\GenreService;
 use App\Services\Movie\MovieCastService;
 use App\Services\Movie\MovieCrewService;
+use App\Services\Movie\MovieImageService;
 use App\Services\Movie\MovieService;
 use Illuminate\Http\JsonResponse;
 
@@ -18,7 +19,8 @@ class TestController extends Controller
         private GenreService $genreService,
         private MovieService $movieService,
         private MovieCastService $movieCastService,
-        private MovieCrewService $movieCrewService
+        private MovieCrewService $movieCrewService,
+        private MovieImageService $movieImageService
     ){}
 
     public function testGenres(): JsonResponse
@@ -69,6 +71,19 @@ class TestController extends Controller
             [
                 'code' => JsonResponse::HTTP_OK,
                 'message' => 'Синхронизация успешна. Получено: ' . $casts . ' членов команды.'
+            ]
+        );
+    }
+
+    public function testMovieImages(Movie $movie): JsonResponse
+    {
+        $images = $this->movieImageService->syncMovieImages(movie: $movie);
+
+        return response()->json
+        (
+            [
+                'code' => JsonResponse::HTTP_OK,
+                'message' => 'Синхронизация успешна. Получено: ' . $images . ' картинок.'
             ]
         );
     }

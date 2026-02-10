@@ -5,6 +5,7 @@ namespace App\Models\Movie;
 use App\Models\Genre\Genre;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Movie extends Model
 {
@@ -36,5 +37,10 @@ class Movie extends Model
     {
         return $this->belongsToMany(MovieCrew::class, 'crew_movie', 'movie_id', 'crew_id')
             ->withPivot('department');
+    }
+
+    public function images(): HasMany
+    {
+        return $this->hasMany(MovieImage::class);
     }
 }
