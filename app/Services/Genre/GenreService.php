@@ -24,7 +24,7 @@ class GenreService
             return 0;
         }
 
-        foreach ($genres as $genre)
+        foreach ($genres['genres'] as $genre)
         {
             $this->genreRepository->updateOrCreate(data: $genre);
 

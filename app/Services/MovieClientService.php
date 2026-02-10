@@ -8,6 +8,17 @@ class MovieClientService
 {
     private const string GENRES_ENDPOINT = '/3/genre/movie/list';
     private const string MOVIES_ENDPOINT = '/3/discover/movie';
+    private const string MOVIE_CASTS_ENDPOINT = '/3/movie/%d/credits';
+
+    public function fetchMovieCasts(int $movieId): array
+    {
+        return $this->fetch(endpoint: sprintf(self::MOVIE_CASTS_ENDPOINT, $movieId), params:
+            [
+                'api_key' => config('tmdb.api_key'),
+                'language' => 'ru'
+            ]
+        );
+    }
 
     public function fetchMovies(int $genreId, int $page): array
     {
@@ -23,14 +34,12 @@ class MovieClientService
 
     public function fetchGenres(): array
     {
-        $response = $this->fetch(endpoint: self::GENRES_ENDPOINT, params:
+        return $this->fetch(endpoint: self::GENRES_ENDPOINT, params:
             [
                 'api_key' => config('tmdb.api_key'),
                 'language' => 'ru'
             ]
         );
-
-        return $response['genres'];
     }
 
     private function fetch(string $endpoint, array $params = []): array

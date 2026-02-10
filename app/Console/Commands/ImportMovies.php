@@ -9,7 +9,7 @@ use Symfony\Component\Console\Command\Command as CommandAlias;
 
 class ImportMovies extends Command
 {
-    private const int LIMIT = 20;
+    private const int LIMIT = 10;
 
     /**
      * The name and signature of the console command.

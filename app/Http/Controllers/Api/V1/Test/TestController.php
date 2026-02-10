@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Api\V1\Test;
 
 use App\Http\Controllers\Controller;
 use App\Models\Genre\Genre;
+use App\Models\Movie\Movie;
 use App\Services\Genre\GenreService;
+use App\Services\Movie\MovieCastService;
 use App\Services\Movie\MovieService;
 use Illuminate\Http\JsonResponse;
 
@@ -13,7 +15,8 @@ class TestController extends Controller
     public function __construct
     (
         private GenreService $genreService,
-        private MovieService $movieService
+        private MovieService $movieService,
+        private MovieCastService $movieCastService
     ){}
 
     public function testGenres(): JsonResponse
@@ -38,6 +41,19 @@ class TestController extends Controller
             [
                 'code' => JsonResponse::HTTP_OK,
                 'message' => 'Синхронизация успешна. Получено: ' . $movies . ' фильмов.'
+            ]
+        );
+    }
+
+    public function testMovieCasts(Movie $movie): JsonResponse
+    {
+        $casts = $this->movieCastService->syncMovieCasts(movie: $movie);
+
+        return response()->json
+        (
+            [
+                'code' => JsonResponse::HTTP_OK,
+                'message' => 'Синхронизация успешна. Получено: ' . $casts . ' актеров.'
             ]
         );
     }

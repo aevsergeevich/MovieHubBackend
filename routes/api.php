@@ -9,9 +9,13 @@ Route::prefix('v1')->group(function () {
         TestController::class, 'testGenres'
     ])->name('test-genres');
 
-    Route::get('test-movies', [
+    Route::get('test-movies/{genre}', [
         TestController::class, 'testMovies'
     ])->name('test-movies');
+
+    Route::get('test-movie-casts/{movie}', [
+        TestController::class, 'testMovieCasts'
+    ])->name('test-movie-casts');
 
 });
 

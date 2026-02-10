@@ -40,9 +40,9 @@ class MovieService
                     break 2;
                 }
 
-                $item = $this->movieRepository->updateOrCreate(data: $movie);
+                $data = $this->movieRepository->updateOrCreate(data: $movie);
 
-                $ids[] = $item->id;
+                $ids[] = $data->id;
 
                 $imported ++;
             }

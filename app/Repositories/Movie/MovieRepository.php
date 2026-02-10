@@ -3,11 +3,17 @@
 namespace App\Repositories\Movie;
 
 use App\Models\Movie\Movie;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Str;
 
 class MovieRepository
 {
     public function __construct(private Movie $movie){}
+
+    public function getAll(): Collection
+    {
+        return $this->movie->query()->get();
+    }
 
     public function updateOrCreate(array $data): Movie
     {
@@ -25,5 +31,10 @@ class MovieRepository
                 'release_date' => $data['release_date']
             ]
         );
+    }
+
+    public function attachCasts(Movie $movie, array $ids): void
+    {
+        $movie->actors()->syncWithoutDetaching($ids);
     }
 }
