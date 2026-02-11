@@ -13,6 +13,7 @@ trait Sort
         {
             'id_asc' => $query->sortById(Query::SORT_ASC),
             'id_desc' => $query->sortById(Query::SORT_DESC),
+
             default => $query->orderBy(Query::ID_COLUMN, Query::SORT_DESC)
         };
     }

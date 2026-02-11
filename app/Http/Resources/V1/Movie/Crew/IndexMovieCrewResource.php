@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Resources\Api\Genre;
+namespace App\Http\Resources\V1\Movie\Crew;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class IndexGenreResource extends JsonResource
+class IndexMovieCrewResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -17,9 +17,8 @@ class IndexGenreResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'slug' => $this->slug,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at
+            'department' => $this->pivot->department,
+            'created_at' => $this->created_at
         ];
     }
 }

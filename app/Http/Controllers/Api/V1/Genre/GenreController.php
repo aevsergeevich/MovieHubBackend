@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api\V1\Genre;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\V1\Genre\IndexGenreRequest;
-use App\Http\Resources\Api\Genre\IndexGenreResource;
+use App\Http\Resources\V1\Genre\IndexGenreResource;
 use App\Repositories\Genre\GenreRepository;
 use App\Services\JsonResponseService;
 use Illuminate\Http\JsonResponse;

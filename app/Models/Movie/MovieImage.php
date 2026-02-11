@@ -7,10 +7,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class MovieImage extends Model
 {
-    protected $fillable = ['movie_id', 'type_id', 'file_path', 'width', 'height',
-        'height',
-        'type_id'
-    ];
+    protected $fillable = ['movie_id', 'type_id', 'file_path', 'width', 'height'];
 
     // Relations
 
@@ -21,6 +18,6 @@ class MovieImage extends Model
 
     public function type(): BelongsTo
     {
-        return $this->hasMany(MovieImageType::class);
+        return $this->belongsTo(MovieImageType::class);
     }
 }

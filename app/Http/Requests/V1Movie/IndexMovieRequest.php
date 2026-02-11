@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\V1\Genre;
+namespace App\Http\Requests\V1Movie;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class IndexGenreRequest extends FormRequest
+class IndexMovieRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,7 +22,7 @@ class IndexGenreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'sort' => ['sometimes', 'string', 'in:id_asc,id_desc'],
+            'sort' => ['sometimes', 'string', 'in:id_asc,id_desc,title_asc,title_desc,release_date_asc,release_date_desc'],
 
             'perPage' => ['sometimes', 'integer', 'min:1', 'max:100'],
             'page' => ['sometimes', 'integer', 'min:1']
