@@ -3,6 +3,7 @@
 namespace App\Models\Movie;
 
 use App\Models\Genre\Genre;
+use App\Traits\Movie\Filter\Filter;
 use App\Traits\Movie\Sort\Sort;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -10,7 +11,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Movie extends Model
 {
-    use Sort;
+    use Filter, Sort;
 
     protected $fillable =
         [

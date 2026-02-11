@@ -22,6 +22,12 @@ class IndexMovieRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'genres' => ['nullable', 'array'],
+            'genres.*' => ['integer', 'exists:genres,id'],
+
+            'date_from' => ['nullable', 'date'],
+            'date_to' => ['nullable', 'date', 'after_or_equal:date_from'],
+
             'sort' => ['sometimes', 'string', 'in:id_asc,id_desc,title_asc,title_desc,release_date_asc,release_date_desc'],
 
             'perPage' => ['sometimes', 'integer', 'min:1', 'max:100'],
@@ -32,6 +38,13 @@ class IndexMovieRequest extends FormRequest
     public function messages(): array
     {
         return [
+            'genres.*.integer' => 'Каждый элемент genres должен быть числом',
+            'genres.*.exists' => 'Указанный жанр не существует',
+
+            'date_from.date' => 'Дата начала должна быть корректной датой',
+            'date_to.date' => 'Дата конца должна быть корректной датой',
+            'date_to.after_or_equal' => 'Дата конца должна быть равна или позже даты начала',
+
             'sort.string' => 'Поле сортировки должно быть строкой',
             'sort.in' => 'Недопустимое значение сортировки. Доступные значения: id_asc, id_desc',
 

@@ -29,6 +29,7 @@ class MovieRepository
     public function getAllWithPagination(array $filters): LengthAwarePaginator
     {
         return $this->movie->query()
+            ->applyFilters($filters)
             ->applySort($filters['sort'] ?? null)
             ->with(self::RELATIONS)
             ->orderBy(Query::ID_COLUMN, Query::SORT_DESC)
