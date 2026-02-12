@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api\V1\Movie;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\V1Movie\IndexMovieRequest;
+use App\Http\Requests\V1\Movie\IndexMovieRequest;
 use App\Http\Resources\V1\Movie\IndexMovieResource;
 use App\Http\Resources\V1\Movie\ShowMovieResource;
 use App\Models\Movie\Movie;
